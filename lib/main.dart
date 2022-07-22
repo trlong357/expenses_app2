@@ -53,11 +53,24 @@ class _MyHomePageState extends State<MyHomePage> {
         date: DateTime.now())
   ];
 
+  void _addTransaction(String title, double amount, DateTime date) {
+    final newTransaction = Transaction(
+      id: DateTime.now().toString(),
+      title: title,
+      amount: amount,
+      date: date,
+    );
+
+    setState(() {
+      _transactions.add(newTransaction);
+    });
+  }
+
   void _showAddingTransactionModal(BuildContext context) {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return NewTransaction();
+          return NewTransaction(_addTransaction);
         });
   }
 
