@@ -60,9 +60,14 @@ class _MyHomePageState extends State<MyHomePage> {
       amount: amount,
       date: date,
     );
-
     setState(() {
       _transactions.add(newTransaction);
+    });
+  }
+
+  void _deleteTransaction(String id) {
+    setState(() {
+      _transactions.removeWhere((element) => element.id == id);
     });
   }
 
@@ -83,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         children: [
           Text("chart"),
-          TransactionList(_transactions),
+          TransactionList(_deleteTransaction, _transactions),
         ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
