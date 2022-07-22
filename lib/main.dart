@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'model/transaction.dart';
 import 'widgets/transactionList.dart';
 import 'widgets/newTransaction.dart';
+import 'widgets/expandableFAB.dart';
 
 void main() {
   runApp(const MyApp());
@@ -91,10 +92,23 @@ class _MyHomePageState extends State<MyHomePage> {
           TransactionList(_deleteTransaction, _transactions),
         ],
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => _showAddingTransactionModal(context),
-        child: const Icon(Icons.add),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () => _showAddingTransactionModal(context),
+      //   child: const Icon(Icons.add),
+      // ),
+      floatingActionButton: ExpandableFab(
+        distance: 112.0,
+        children: [
+          ActionButton(
+            icon: const Icon(Icons.add),
+            onPressed: () => _showAddingTransactionModal(context),
+          ),
+          ActionButton(
+            icon: const Icon(Icons.published_with_changes_rounded),
+            onPressed: () {},
+          )
+        ],
       ),
     );
   }
